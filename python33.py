@@ -16,8 +16,12 @@ if password:
     tn.write(password.encode('ascii') + b"\n")  # enter password
 
 ## enter commands, be sure to try manually first
+tn.write(b"enable\n")
+tn.write(b"cisco\n")
+tn.write(b"conf t\n")
+
 for n in range(2, 11):
-    tn.write(b"vlan " + str(n).encode('ascii') + b"\n")
+    tn.write(b"vlan " + str(n).encode('ascii') + b"\n")  #encode n, integer, as ascii text
     tn.write(b"name Python_VLAN_" + str(n).encode('ascii') + b"\n")
 
 tn.write(b"end\n")
