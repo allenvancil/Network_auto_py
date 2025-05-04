@@ -17,7 +17,7 @@ if password:
 
 ## enter commands, be sure to try manually first
 tn.write(b"enable\n")  # cisco command
-tn.write(b"cisco\n")  # enable password to enter "cisco"
+tn.write(b"root\n")  # enable password to enter "cisco"
 tn.write(b"conf t\n")  # conf t command into terminal
 tn.write(b"int loop 0\n")
 tn.write(b"ip address 1.1.1.1 255.255.255.255\n")
