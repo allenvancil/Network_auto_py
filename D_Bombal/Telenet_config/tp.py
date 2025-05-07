@@ -1,5 +1,3 @@
-f = open('myswitches','r')
-
-
-for i in f:
-    print(i)
+user = "Alice"
+result = user.encode('ascii') + b'\n'
+print(result)  # Output: b'Alice\n'
