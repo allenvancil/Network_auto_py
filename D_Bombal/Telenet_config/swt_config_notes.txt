@@ -1,0 +1,9 @@
+To automate switch config at terminal:
+
+1. enable 
+2. conf t
+3. in 'myswitches' file 
+	a. change switch name 
+	b. change ip address
+* be sure the switch ips are on the same network as network auto terminal
+			check this in NW auto terminal >> ifconfig
