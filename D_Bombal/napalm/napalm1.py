@@ -4,4 +4,4 @@ iosvl2 = driver('192.168.122.72', 'david', 'cisco')
 iosvl2.open()
 
 ios_output = iosvl2.get_facts()
-print()
+print(ios_output)
