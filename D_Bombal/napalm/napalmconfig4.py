@@ -1,19 +1,35 @@
 import json
 from napalm import get_network_driver
 
-driver = get_network_driver('ios')
-iosvl2 = driver('192.168.122.72', 'allen', 'root')
-iosvl2.open()
+dev_list = ['192.168.122.72', 
+            '192.168.122.73']
 
-print('accessing 192.168.122.72\n')
-iosvl2.load_merge_candidate(filename='ACL1.cfg')
+for ipaddress in dev_list:
+    print('connecting  to ' + str(ipaddress))
+    driver = get_network_driver('ios')
+    iosv = driver(ipaddress, 'allen', 'root')
+    iosv.open()
 
-diffs = iosvl2.compare_config()
-if len(diffs) > 0:
-    print(diffs)
-    iosvl2.commit_config()
-else:
-    print('No changes required.')
-    iosvl2.discard_config()
+    ## NEED TO GET ACL1.CFG FILE
 
-iosvl2.close()
+    iosv.load_merge_candidate(filename='ACL1.cfg')
+    diffs = iosv.commit_config()
+    if len(diffs) > 0:
+        print(diffs)
+        iosv.commit_config()
+    else:
+        print('No ACL changes required')
+        iosv.discard_config()
+
+    ## GET OSPF.CFG FILE
+
+    iosv.load_merge_candidate(filename='ospf1.cfg')
+
+    diffs = iosv.compare_config()
+    if len(diffs) > 0:
+        print(diffs)
+        iosv.commit_config()
+    else:
+        print("No OSPF changes required")
+        iosv.discard_config()
+    iosv.close()
